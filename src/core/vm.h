@@ -42,51 +42,61 @@ class VM {
     bool step() {
         const Instruction &ins = program.code[pc++];
 
-        switch (ins.op) {
+        switch (ins.opcode()) {
         case ADD:
-            reg(ins.a) = Value::Int(reg(ins.b).asInt() + reg(ins.c).asInt());
+            reg(ins.a()) =
+                Value::Int(reg(ins.b()).asInt() + reg(ins.c()).asInt());
             break;
         case SUB:
-            reg(ins.a) = Value::Int(reg(ins.b).asInt() - reg(ins.c).asInt());
+            reg(ins.a()) =
+                Value::Int(reg(ins.b()).asInt() - reg(ins.c()).asInt());
             break;
         case MUL:
-            reg(ins.a) = Value::Int(reg(ins.b).asInt() * reg(ins.c).asInt());
+            reg(ins.a()) =
+                Value::Int(reg(ins.b()).asInt() * reg(ins.c()).asInt());
             break;
         case DIV:
-            reg(ins.a) = Value::Int(reg(ins.b).asInt() / reg(ins.c).asInt());
+            reg(ins.a()) =
+                Value::Int(reg(ins.b()).asInt() / reg(ins.c()).asInt());
             break;
         case MOD:
-            reg(ins.a) = Value::Int(reg(ins.b).asInt() % reg(ins.c).asInt());
+            reg(ins.a()) =
+                Value::Int(reg(ins.b()).asInt() % reg(ins.c()).asInt());
             break;
         case NEG:
-            reg(ins.a) = Value::Int(-reg(ins.b).asInt());
+            reg(ins.a()) = Value::Int(-reg(ins.b()).asInt());
             break;
         case FADD:
-            reg(ins.a) = Value::Float(reg(ins.b).asFloat() + reg(ins.c).asFloat());
+            reg(ins.a()) =
+                Value::Float(reg(ins.b()).asFloat() + reg(ins.c()).asFloat());
             break;
         case FSUB:
-            reg(ins.a) = Value::Float(reg(ins.b).asFloat() - reg(ins.c).asFloat());
+            reg(ins.a()) =
+                Value::Float(reg(ins.b()).asFloat() - reg(ins.c()).asFloat());
             break;
         case FMUL:
-            reg(ins.a) = Value::Float(reg(ins.b).asFloat() * reg(ins.c).asFloat());
+            reg(ins.a()) =
+                Value::Float(reg(ins.b()).asFloat() * reg(ins.c()).asFloat());
             break;
         case FDIV:
-            reg(ins.a) = Value::Float(reg(ins.b).asFloat() / reg(ins.c).asFloat());
+            reg(ins.a()) =
+                Value::Float(reg(ins.b()).asFloat() / reg(ins.c()).asFloat());
             break;
         case FMOD:
-            reg(ins.a) = Value::Float(std::fmod(reg(ins.b).asFloat(), reg(ins.c).asFloat()));
+            reg(ins.a()) = Value::Float(
+                std::fmod(reg(ins.b()).asFloat(), reg(ins.c()).asFloat()));
             break;
         case FNEG:
-            reg(ins.a) = Value::Float(-reg(ins.b).asFloat());
+            reg(ins.a()) = Value::Float(-reg(ins.b()).asFloat());
             break;
         case LI:
-            reg(ins.a) = Value::Int(ins.b);
+            reg(ins.a()) = Value::Int(ins.sd());
             break;
         case LK:
-            reg(ins.a) = constant(ins.b);
+            reg(ins.a()) = constant(ins.d());
             break;
         case PR:
-            std::cout << reg(ins.a).toString() << "\n";
+            std::cout << reg(ins.a()).toString() << "\n";
             break;
         case STP:
             return false;
