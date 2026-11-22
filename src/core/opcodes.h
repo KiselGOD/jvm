@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum Opcode {
     STP = 0,
 
