@@ -7,6 +7,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_library(vm_core INTERFACE)
 target_include_directories(vm_core INTERFACE src)
 
