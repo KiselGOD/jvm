@@ -44,6 +44,21 @@ class VM {
         case ADD:
             reg(ins.a) = Value::Int(reg(ins.b).asInt() + reg(ins.c).asInt());
             break;
+        case SUB:
+            reg(ins.a) = Value::Int(reg(ins.b).asInt() - reg(ins.c).asInt());
+            break;
+        case MUL:
+            reg(ins.a) = Value::Int(reg(ins.b).asInt() * reg(ins.c).asInt());
+            break;
+        case DIV:
+            reg(ins.a) = Value::Int(reg(ins.b).asInt() / reg(ins.c).asInt());
+            break;
+        case MOD:
+            reg(ins.a) = Value::Int(reg(ins.b).asInt() % reg(ins.c).asInt());
+            break;
+        case NEG:
+            reg(ins.a) = Value::Int(-reg(ins.b).asInt());
+            break;
         case LI:
             reg(ins.a) = Value::Int(ins.b);
             break;
